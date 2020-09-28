@@ -78,13 +78,13 @@ contract SupplyChain {
    Hint: What item properties will be non-zero when an Item has been added?
    */
   modifier forSale(uint _sku) {
-    require (items[_sku].sku == _sku);
+    require (items[_sku].seller != address(0));
     require (items[_sku].state == States.ForSale);
     _;
     }
 
   modifier sold(uint _sku) { 
-    require (items[_sku].sku == _sku);
+    require (items[_sku].seller != address(0));
     require (items[_sku].state == States.Sold);
     _;
     }
@@ -103,13 +103,13 @@ contract SupplyChain {
   }
 
   modifier shipped(uint _sku) {
-    require (items[_sku].sku == _sku);
+    require (items[_sku].seller != address(0));
     require (items[_sku].state == States.Shipped);
     _;
     }
 
   modifier received(uint _sku) {
-    require (items[_sku].sku == _sku);
+    require (items[_sku].seller != address(0));
     require (items[_sku].state == States.Received);
     _;
     }
